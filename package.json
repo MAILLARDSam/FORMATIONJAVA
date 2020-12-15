@@ -1,0 +1,23 @@
+{
+  "name": "FORMATIONJAVA",
+  "version": "1.0.0",
+  "description": "Formation JAVASCRIPT",
+  "main": "index.js",
+  "scripts": {
+    "test": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MAILLARDSam/FORMATIONJAVA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MAILLARDSam/FORMATIONJAVA/issues"
+  },
+  "homepage": "https://github.com/MAILLARDSam/FORMATIONJAVA#readme",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
