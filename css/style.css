@@ -58,3 +58,12 @@ h1 {
 #list>*{
   vertical-align: top;
 }
+
+.close{
+  float: right;
+}
+
+.close img{
+  width: 32px;
+  height: 32px;
+}

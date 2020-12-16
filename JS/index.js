@@ -52,11 +52,21 @@ function createPostit(titre, date, heure, description) {
     //ostit.classList.remove('postit');
     //postit.innerHTML='Mon nouveau postit';
 
-    postit.innerHTML = '<div class="postit-titre">' + titre + '</div>\
-                date: <span class="datetime">'+ date + '</span> heure : <span class="datetime">' + heure + '</span>\
-                <h2>Description :</h2>'+ description;
+    postit.innerHTML =  '<div class="close">\
+                        <img src="img/close.png"/>\
+                        </div><div class="postit-titre">' + titre + '</div>\
+                        date: <span class="datetime">'+ date + '</span> heure : <span class="datetime">' + heure + '</span>\
+                        <h2>Description :</h2>'+ description;
+
+    // selection a partir de postit de .close img
+    postit.querySelector('.close img').addEventListener('click', deletePostit);
 
     //sélection de la liste de postit    
     var liste = document.querySelector('#list');
     liste.append(postit);
+}
+
+function deletePostit(evt){
+    console.log('evenement lié à la suppression d\'une note',evt);
+    evt.target.parentElement.parentElement.remove();
 }
