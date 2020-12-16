@@ -53,3 +53,8 @@ h1 {
   font-size: x-large;
   font-weight: 900;
 }
+
+/* Alignement des postit vers le haut */
+#list>*{
+  vertical-align: top;
+}
