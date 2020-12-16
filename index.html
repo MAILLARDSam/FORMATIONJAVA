@@ -12,17 +12,21 @@
     <div id="main">
         <div id="editor">
             <div id="formulaire">
-                <h1>Titre de la note: </h1>
-                Mon trire de note <br />
-                date : 2020-01-01 heure : 12:00:00
-                <h2>
-                    Description
-                </h2>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Dignissimos, veniam. Dolor iusto corporis reprehenderit quisquam
-                veniam eum fugit commodi deserunt aliquid deleniti error, quo odio perspiciatis eius aspernatur
-                incidunt. Quam.
-
+                <form action="#" method="GET" name="editor-form">
+                    <h1>Titre de la note: </h1>
+                    <input type="text" name="title" id="editor-title" /><br /><br />
+                    <div style="display: inline-block;">
+                        <h4>date :</h4><input type="date" name="date" id="editor-date" />
+                    </div>
+                    <div style="display: inline-block;">
+                        <h4>heure :</h4><input type="time" name="time" id="editor-time" />
+                    </div>
+                    <h2>Description</h2>
+                    <textarea name="decription" id="editor-description"
+                        placeholder="saisissez la description"></textarea>
+                    <div style="text-align: center;"> <input type="reset" value="Reinit." /> <input type="submit" value="valider" />
+                    </div>
+                </form>
             </div>
         </div>
         <hr />
@@ -38,7 +42,7 @@
                 dignissimos. Esse eveniet soluta assumenda earum aut officia illum tempora sint. Dolorum unde labore
                 asperiores dolorem maiores debitis?
             </div>
-            
+
             <div class="postit">
                 Mon titre de note
                 date : 2020-01-01 heure : 12:00:00
