@@ -1,43 +1,54 @@
-body{
+body {
   background-image: url('../img/noel.jpg');
-  background-size: 100vw 100vh;  
+  background-size: 100vw 100vh;
 }
 
 /* ma mise en forme css */
-h1{
-    color:tomato;
-    font-weight: 900;
-}
-/* sélecteur de l'id formulaire */
-#formulaire{
-  /* ajoute un bord noir */
-    border:1px solid black;
-    /* arrondi les angles  */
-  border-radius: 7px;
-   
-}
-/* sélecteur de la classe */
-.postit{
-    background-color: burlywood;
-    border-bottom-right-radius: 25px;
-    width: 20%;
-    min-width: 300px;
-    /* Mets en à côté le conteneur postit */ 
-    display: inline-block;
-    padding:10px;
-    margin-left:10px;
-    border:1px solid darkgray;
-    box-shadow: 15px 15px 25px grey;
-    text-align: center;
+
+h1 {
+  color: tomato;
+  font-weight: 900;
 }
 
-.postit-titre{
-    font-size: xx-large;
-    text-decoration: underline tomato;
+/* sélecteur de l'id formulaire */
+
+#formulaire {
+  /* ajoute un bord noir */
+  border: 1px solid black;
+  /* arrondi les angles  */
+  border-radius: 7px;
+  min-width: 400px;
+  width: 60%;
+  margin-left: 20%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.753);
+  box-shadow:30px 30px 60px black;
+}
+
+/* sélecteur de la classe */
+
+.postit {
+  background-color: burlywood;
+  border-bottom-right-radius: 25px;
+  width: 20%;
+  min-width: 300px;
+  /* Mets en à côté le conteneur postit */
+  display: inline-block;
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid darkgray;
+  box-shadow: 15px 15px 25px grey;
+  text-align: center;
+}
+
+.postit-titre {
+  font-size: xx-large;
+  text-decoration: underline tomato;
 }
 
 /* sélection des .datetime uniquement dans un .postit */
-.datetime{
-    font-size: x-large;
-    font-weight: 900;
-    }
+
+.datetime {
+  font-size: x-large;
+  font-weight: 900;
+}
