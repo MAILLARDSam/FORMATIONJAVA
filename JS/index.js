@@ -20,12 +20,20 @@ function initialisationJS(prenom) {
 
 function formSubmited(evt) {
     evt.preventDefault();
+    // C'est une fonction qui demande de ne pas faire le fonctionnement normal : rechargement de la page
     console.log('Mon formulaire est "submit" ')
     //onsole.log(evt);
     console.log(evt.target[0].value);
     console.log(evt.target[1].value);
     console.log(evt.target[2].value);
     console.log(evt.target[3].value);
+    var monFormulaire = document.forms['editor-form'];
+    createPostit(
+                monFormulaire['title'].value,
+                monFormulaire['date'].value,
+                monFormulaire['time'].value,
+                monFormulaire['description'].value
+                );
 }
 
 /**
