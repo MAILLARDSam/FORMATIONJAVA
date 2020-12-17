@@ -6,13 +6,13 @@ window.addEventListener('load', function (evt) {
     // fonction à décelncher pour l'event -> formSubmit
     document.querySelector('form').addEventListener('submit', formSubmited);
     //chargement initial des postit
-    (new Crud(BASE_URL)).recuperer('/postit',function(mesPostits){
-       console.log('j\'ai fini de recevoir mes postit voici la liste :',mesPostits);
+    (new Crud(BASE_URL)).recuperer('/postit', function (mesPostits) {
+        console.log('j\'ai fini de recevoir mes postit voici la liste :', mesPostits);
 
-       mesPostits.forEach(function(postit){
-          console.log(postit);
-          createPostit(postit.titre,postit.datetime.substring(0,10),postit.datetime.substring(12),postit.description);
-       });
+        mesPostits.forEach(function (postit) {
+            console.log(postit);
+            createPostitByObject(postit);
+        });
     });
 });
 
@@ -40,11 +40,11 @@ function formSubmited(evt) {
     console.log(evt.target[3].value);
     var monFormulaire = document.forms['editor-form'];
     createPostit(
-                monFormulaire['title'].value,
-                monFormulaire['date'].value,
-                monFormulaire['time'].value,
-                monFormulaire['description'].value
-                );
+        monFormulaire['title'].value,
+        monFormulaire['date'].value,
+        monFormulaire['time'].value,
+        monFormulaire['description'].value
+    );
 }
 
 /**
@@ -63,7 +63,7 @@ function createPostit(titre, date, heure, description) {
     //ostit.classList.remove('postit');
     //postit.innerHTML='Mon nouveau postit';
 
-    postit.innerHTML =  '<div class="close">\
+    postit.innerHTML = '<div class="close">\
                         <img src="img/close.png"/>\
                         </div><div class="postit-titre">' + titre + '</div>\
                         date: <span class="datetime">'+ date + '</span> heure : <span class="datetime">' + heure + '</span>\
@@ -77,7 +77,36 @@ function createPostit(titre, date, heure, description) {
     liste.append(postit);
 }
 
-function deletePostit(evt){
-    console.log('evenement lié à la suppression d\'une note',evt);
+/**
+ * 
+ * @param {Object} postit 
+ */
+
+function createPostitByObject(postitInput) {
+    var postit = document.createElement('div');
+    //creation d ela balidse id du postit dans le rest   
+    postit.id = 'postit-' + postitInput.id;
+    // ajout d'un class dans la liste de classe d'un Element
+    postit.classList.add('postit');
+    // Possiblité de suppresion d'une class d'un balise
+    //ostit.classList.remove('postit');
+    //postit.innerHTML='Mon nouveau postit';
+
+    postit.innerHTML = '<div class="close">\
+                        <img src="img/close.png"/>\
+                        </div><div class="postit-titre">' + postitInput.titre + '</div>\
+                        date: <span class="datetime">'+ postitInput.datetime.substring(0, 10) + '</span> heure : <span class="datetime">' + postitInput.datetime.substring(11) + '</span>\
+                        <h2>Description :</h2>'+ postitInput.description;
+
+    // selection a partir de postit de .close img
+    postit.querySelector('.close img').addEventListener('click', deletePostit);
+
+    //sélection de la liste de postit    
+    var liste = document.querySelector('#list');
+    liste.append(postit);
+}
+
+function deletePostit(evt) {
+    console.log('evenement lié à la suppression d\'une note', evt);
     evt.target.parentElement.parentElement.remove();
 }
