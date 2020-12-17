@@ -5,7 +5,18 @@ window.addEventListener('load', function (evt) {
     // event : submit
     // fonction à décelncher pour l'event -> formSubmit
     document.querySelector('form').addEventListener('submit', formSubmited);
+    //chargement initial des postit
+    (new Crud(BASE_URL)).recuperer('/postit',function(mesPostits){
+       console.log('j\'ai fini de recevoir mes postit voici la liste :',mesPostits);
+
+       mesPostits.forEach(function(postit){
+          console.log(postit);
+          createPostit(postit.titre,postit.datetime.substring(0,10),postit.datetime.substring(12),postit.description);
+       });
+    });
 });
+
+
 
 //declaration d'une fonction
 function initialisationJS(prenom) {

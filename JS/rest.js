@@ -9,7 +9,7 @@ var Crud = function (params) {
      * @param {Uri} ressourceUrl 
      */
 
-    function get(ressourceUrl) {   //instancier xhr
+    function get(ressourceUrl,clbk) {   //instancier xhr
         var xhr = new XMLHttpRequest();
         // ouverture de la connexion
         xhr.open('GET', BASE_URL + ressourceUrl);
@@ -19,6 +19,7 @@ var Crud = function (params) {
             if (evt.currentTarget.readyState < XMLHttpRequest.DONE) { return; }
             var objt = JSON.parse(evt.currentTarget.response);
             console.log(objt);
+            clbk(objt);
         }
         //envoie de la requête
         xhr.send();
