@@ -108,5 +108,10 @@ function createPostitByObject(postitInput) {
 
 function deletePostit(evt) {
     console.log('evenement lié à la suppression d\'une note', evt);
-    evt.target.parentElement.parentElement.remove();
+    var domPostitId = evt.path[2].id.substring(7);
+    (new Crud(BASE_URL)).supprimer('/postit/'+domPostitId,function() {
+        evt.path[2].remove();
+        }
+    );
+    
 }
