@@ -1,0 +1,28 @@
+{
+  "postit": [
+    {
+      "id": 0,
+      "titre": "Mon premier postit",
+      "datetime": "2020-12-17T10:06:00",
+      "description": "La description du postit n°1"
+    },
+    {
+      "id": 1,
+      "titre": "Mon deuxième postit",
+      "datetime": "2020-12-17T10:06:00",
+      "description": "La description du postit n°2"
+    },
+    {
+      "id": 2,
+      "titre": "Mon troisième postit",
+      "datetime": "2020-12-17T10:06:00",
+      "description": "La description du postit n°3"
+    }
+  ],
+  "proprietaire": {
+    "nom": "MAILLARD",
+    "prenom": "Samuel",
+    "mail": "samuel.maillard@siemens.com",
+    "tel": "0608321145"
+  }
+}

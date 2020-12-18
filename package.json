@@ -4,8 +4,10 @@
   "description": "Formation JAVASCRIPT",
   "main": "index.js",
   "scripts": {
-    "test": "lite-server",
-    "start": "json-server -p 2776 db/db.json"
+    "lite": "lite-server",
+    "json": "json-server -p 2776 db/db.json",
+    "start": "npm run lite | npm run json"
+
   },
   "repository": {
     "type": "git",
