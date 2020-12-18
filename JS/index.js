@@ -32,18 +32,29 @@ function initialisationJS(prenom) {
 function formSubmited(evt) {
     evt.preventDefault();
     // C'est une fonction qui demande de ne pas faire le fonctionnement normal : rechargement de la page
-    console.log('Mon formulaire est "submit" ')
+    //console.log('Mon formulaire est "submit" ')
     //onsole.log(evt);
-    console.log(evt.target[0].value);
+    /*console.log(evt.target[0].value);
     console.log(evt.target[1].value);
     console.log(evt.target[2].value);
-    console.log(evt.target[3].value);
+    console.log(evt.target[3].value);*/
     var monFormulaire = document.forms['editor-form'];
-    createPostit(
-        monFormulaire['title'].value,
-        monFormulaire['date'].value,
-        monFormulaire['time'].value,
-        monFormulaire['description'].value
+    //création d'un n ouvel objet au rest
+    var postit = {
+        titre: monFormulaire["title"].value,
+        datetime: evt.target[1].value + 'T' + evt.target[2].value,
+        description: evt.target[3].value
+    };
+    console.log(postit);
+    //Appel rest pour l'ajout dans la liste et recup de l'id
+    (new Crud(BASE_URL)).creer('/postit', postit, function (objSaved) {
+        createPostitByObject(objSaved);
+    }
+        /*createPostit(
+         monFormulaire['title'].value,
+         monFormulaire['date'].value,
+         monFormulaire['time'].value,
+         monFormulaire['description'].value*/
     );
 }
 
@@ -109,9 +120,9 @@ function createPostitByObject(postitInput) {
 function deletePostit(evt) {
     console.log('evenement lié à la suppression d\'une note', evt);
     var domPostitId = evt.path[2].id.substring(7);
-    (new Crud(BASE_URL)).supprimer('/postit/'+domPostitId,function() {
+    (new Crud(BASE_URL)).supprimer('/postit/' + domPostitId, function () {
         evt.path[2].remove();
-        }
+    }
     );
-    
+
 }
