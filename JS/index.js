@@ -99,6 +99,7 @@ function createPostitByObject(postitInput) {
     postit.id = 'postit-' + postitInput.id;
     // ajout d'un class dans la liste de classe d'un Element
     postit.classList.add('postit');
+    postit.addEventListener('dblclick', putinformclickedpostit);
     // Possiblité de suppresion d'une class d'un balise
     //ostit.classList.remove('postit');
     //postit.innerHTML='Mon nouveau postit';
@@ -106,8 +107,9 @@ function createPostitByObject(postitInput) {
     postit.innerHTML = '<div class="close">\
                         <img src="img/close.png"/>\
                         </div><div class="postit-titre">' + postitInput.titre + '</div>\
-                        date: <span class="datetime">'+ postitInput.datetime.substring(0, 10) + '</span> heure : <span class="datetime">' + postitInput.datetime.substring(11) + '</span>\
-                        <h2>Description :</h2>'+ postitInput.description;
+                        date: <span class="datetime postit-date">'+ postitInput.datetime.substring(0, 10) + '</span>\ heure :\
+                        <span class="datetime postit-heure">' + postitInput.datetime.substring(11) + '</span>\
+                        <h2>Description :</h2><div class="postit-description">'+ postitInput.description + '</div>';
 
     // selection a partir de postit de .close img
     postit.querySelector('.close img').addEventListener('click', deletePostit);
@@ -118,11 +120,32 @@ function createPostitByObject(postitInput) {
 }
 
 function deletePostit(evt) {
+    //Arrête les événments qui découlent
+    evt.stopPropagation();
+    //code pour vérifier dans la console que cela fonctionne
+    //window.evt=evt;
+    //equivalent à var evt=evt;
     console.log('evenement lié à la suppression d\'une note', evt);
     var domPostitId = evt.path[2].id.substring(7);
     (new Crud(BASE_URL)).supprimer('/postit/' + domPostitId, function () {
         evt.path[2].remove();
-    }
-    );
+    });
 
+}
+
+function putinformclickedpostit(evt) {
+    console.log('j\'ai double cliqué sur un postit', evt);
+    var dompostit = evt.currentTarget;
+    console.log(
+        dompostit.id.substring(7),
+        dompostit.querySelector('.postit-titre').innerText,
+        dompostit.querySelector('.postit-date').innerText,
+        dompostit.querySelector('.postit-heure').innerText,
+        dompostit.querySelector('.postit-description').innerText
+    );
+    document.forms["editor-form"]['id'].value = dompostit.id.substring(7);
+    document.forms["editor-form"]['title'].value = dompostit.querySelector('.postit-titre').innerText;
+    document.forms["editor-form"]['date'].value = dompostit.querySelector('.postit-date').innerText;
+    document.forms["editor-form"]['time'].value = dompostit.querySelector('.postit-heure').innerText;
+    document.forms["editor-form"]['description'].value = dompostit.querySelector('.postit-description').innerText;
 }
