@@ -1,3 +1,6 @@
+var lastID=0;
+var descripteurDInterval;
+
 window.addEventListener('load', function (evt) {
     //usage d'une fonction
     initialisationJS('Samuel');
@@ -6,14 +9,21 @@ window.addEventListener('load', function (evt) {
     // fonction à décelncher pour l'event -> formSubmit
     document.querySelector('form').addEventListener('submit', formSubmited);
     //chargement initial des postit
+        
     (new Crud(BASE_URL)).recuperer('/postit', function (mesPostits) {
         console.log('j\'ai fini de recevoir mes postit voici la liste :', mesPostits);
-
         mesPostits.forEach(function (postit) {
+            if(lastID<postit.id)
+            {
+                lastId=postit.id;
+            }
             console.log(postit);
             createPostitByObject(postit);
         });
     });
+    //le tronçon du dessus new Crud pourrait être Remplacé par l'appel du pulling ci-dessous
+    // pullingFunction();
+    // descripteurDInterval=setInterval(pullingFunction, 1000);
 });
 
 // création d'une focntion avec une autre manière de faire version ES6
@@ -163,4 +173,18 @@ function putinformclickedpostit(evt) {
     document.forms["editor-form"]['date'].value = dompostit.querySelector('.postit-date').innerText;
     document.forms["editor-form"]['time'].value = dompostit.querySelector('.postit-heure').innerText;
     document.forms["editor-form"]['description'].value = dompostit.querySelector('.postit-description').innerText;
+}
+
+/**
+/*Fonction pour récupérer les notes a partir de la valeur d'un id lastID
+*/
+const pullingFunction=()=>{
+    const lastIdPlus1=lastID+1;
+    (new Crud(BASE_URL)).recuperer('/postit?id_gte='+lastIdPlus1,(listeDesPostIt)=>{
+        listeDesPostIt.map((element)=>{
+            //usage d'une ternaire condition ? cas si c'est vrai : cas si c'est faux
+            lastID= (lastId<element.id?element.id:lastID);
+            createPostitByObject(element);
+        });
+    });
 }

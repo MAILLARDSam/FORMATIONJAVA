@@ -5,7 +5,7 @@ var BASE_URL = 'http://localhost:2776';
 var Crud = function (serveurUrl) {
 
     /**
-     * récupértion d'informations
+     * récupération d'informations
      * @param {Uri} ressourceUrl  chemin de la ressource dans le serveur
      */
 
