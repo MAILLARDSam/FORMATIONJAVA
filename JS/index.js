@@ -16,7 +16,15 @@ window.addEventListener('load', function (evt) {
     });
 });
 
-
+// création d'une focntion avec une autre manière de faire version ES6
+const formReseted = (evt) => {
+    const form = document.forms['editor-form'];
+    for (let i = 0; i < form.length; i++) {
+        if (form[i].type !== 'reset' && form[i].type !== 'submit') {
+            form[i].value = '';
+        }
+    }
+}
 
 //declaration d'une fonction
 function initialisationJS(prenom) {
@@ -42,13 +50,20 @@ function formSubmited(evt) {
     //création d'un n ouvel objet au rest
     var postit = {
         titre: monFormulaire["title"].value,
-        datetime: evt.target[1].value + 'T' + evt.target[2].value,
-        description: evt.target[3].value
+        datetime: monFormulaire["date"].value + 'T' + monFormulaire["time"].value,
+        description: monFormulaire["description"].value
     };
+    if (monFormulaire['id'].value !== '') {
+        postit.id = monFormulaire['id'].value;
+    }
     console.log(postit);
     //Appel rest pour l'ajout dans la liste et recup de l'id
-    (new Crud(BASE_URL)).creer('/postit', postit, function (objSaved) {
+    (new Crud(BASE_URL)).envoiRessource('/postit', postit, function (objSaved) {
+        if (undefined !== postit.id) {
+            document.querySelector('#postit-' + postit.id).remove();
+        }
         createPostitByObject(objSaved);
+        monFormulaire.reset();
     }
         /*createPostit(
          monFormulaire['title'].value,
